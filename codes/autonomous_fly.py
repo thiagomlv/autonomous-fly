@@ -25,7 +25,7 @@ print("Connected to system:", drone.target_system, ", component:", drone.target_
 cap = cv2.VideoCapture(0)
 
 # Ensure the drone is in GUIDED mode
-print("Setting mode to GUIDED")
+print("Setting mode to GUIDED \n")
 drone.mav.command_long_send(
     drone.target_system,
     drone.target_component,
@@ -36,6 +36,11 @@ drone.mav.command_long_send(
     0, 0, 0, 0, 0
 )
 
+# Give some time to change mode
+sleep(2)  
+
+# Ensure the drone is in GUIDED mode
+print("Setting mottors armed \n")
 drone.mav.command_long_send(
     drone.target_system,
     drone.target_component,
@@ -45,9 +50,6 @@ drone.mav.command_long_send(
     0,  # Custom mode
     0, 0, 0, 0, 0
 )
-
-# Give some time to change mode
-sleep(2)  
 
 # Create takeoff command
 takeoff_command = dialect.MAVLink_command_long_message(
@@ -79,9 +81,22 @@ land_command = dialect.MAVLink_command_long_message(
     param7=0
 )
 
+# Create stop the movement command
+stop_command = dialect.MAVLink_set_position_target_local_ned_message(
+    time_boot_ms=0,
+    target_system=drone.target_system,
+    target_component=drone.target_component,
+    coordinate_frame=dialect.MAV_FRAME_LOCAL_NED,
+    type_mask=0b111111111000,  # Stop movement
+    x=0, y=0, z=0,
+    vx=0, vy=0, vz=0,
+    afx=0, afy=0, afz=0,
+    yaw=0, yaw_rate=0
+)
+
 # Takeoff the drone
 drone.mav.send(takeoff_command)
-print("Sent takeoff command to drone")
+print("Sent takeoff command to drone \n")
 
 # Check if takeoff is successful
 while True:
@@ -111,8 +126,17 @@ while True:
             print("Takeoff to", TAKEOFF_ALTITUDE, "meters is successful")
             break
 
+# Give some time to change mode
+print("Desired height achieved successfully")
+print("Changing mode in: 3")
+sleep(1)  
+print("Changing mode in: 2")
+sleep(1) 
+print("Changing mode in: 1")
+sleep(1) 
+
 # Moving forward and looking for the platform
-print(f"Moving forward and looking for the platform")
+print("Moving forward and looking for the platform \n")
 
 while True:
     # Ler um frame da webcam
@@ -130,6 +154,7 @@ while True:
     cv2.waitKey(1)
 
     if circulo is not False:
+        print("Platform located \n")
         break
 
     forward_command = dialect.MAVLink_set_position_target_local_ned_message(
@@ -146,24 +171,19 @@ while True:
     drone.mav.send(forward_command)
     sleep(SLEEP_INTERVAL)
 
-# Stop the movement
-stop_command = dialect.MAVLink_set_position_target_local_ned_message(
-    time_boot_ms=0,
-    target_system=drone.target_system,
-    target_component=drone.target_component,
-    coordinate_frame=dialect.MAV_FRAME_LOCAL_NED,
-    type_mask=0b111111111000,  # Stop movement
-    x=0, y=0, z=0,
-    vx=0, vy=0, vz=0,
-    afx=0, afy=0, afz=0,
-    yaw=0, yaw_rate=0
-)
-
 drone.mav.send(stop_command)
-print("Platform found, stopped forward movement")
+print("Stopped forward movement \n")
+
+# Give some time to change mode
+print("Changing mode in: 3")
+sleep(1)  
+print("Changing mode in: 2")
+sleep(1) 
+print("Changing mode in: 1")
+sleep(1) 
 
 # Centralizando o drone na plataforma
-print("Centralizando a plataforma")
+print("Centralizing the platform \n")
 
 while True:
     # Ler um frame da webcam
@@ -177,42 +197,50 @@ while True:
     imagem, circulo, direcao = identificar_circulos_amarelos(frame)
 
     # Mostrar o frame original e o resultado
-    cv2.imshow('Círculos Amarelos Identificados', imagem)
+    cv2.imshow('Webcam', imagem)
     cv2.waitKey(1)
 
     # centraliza o circulo na imagem
     if circulo is not False:
         if direcao == "Acima":
-            print("Enviar comando pra ir pra frente")
-            
             # ENVIAR AQUI O COMANDO
             send_ned_velocity(drone, SPEED_FIND_CENTER, 0, 0, 1)
-            sleep(2) # espera alguns instantes antes de verificar o próximo frame
+            print("Sending forward command")
+            sleep(1) # espera alguns instantes antes de verificar o próximo frame
 
         if direcao == "Abaixo":
-            print("Enviar comando pra ir pra trás") # Envia o comando
-            
             # ENVIAR AQUI O COMANDO
             send_ned_velocity(drone, SPEED_FIND_CENTER*(-1), 0, 0, 1)
-            sleep(2) # espera alguns instantes antes de verificar o próximo frame
+            print("Sending back command")
+            sleep(1) # espera alguns instantes antes de verificar o próximo frame
 
         if direcao == "Direita":
-            print("Enviar comando pra ir pra a direita") # Envia o comando
-
             # ENVIAR AQUI O COMANDO
             send_ned_velocity(drone, 0, SPEED_FIND_CENTER, 0, 1)
-            sleep(2) # espera alguns instantes antes de verificar o próximo frame
+            print("Sending right command")
+            sleep(1) # espera alguns instantes antes de verificar o próximo frame
 
         if direcao == "Esquerda":
-            print("Enviar comando pra ir para a esquerda") # Envia o comando
-
             # ENVIAR AQUI O COMANDO
             send_ned_velocity(drone, 0, SPEED_FIND_CENTER*(-1), 0, 1)
-            sleep(2) # espera alguns instantes antes de verificar o próximo frame
+            print("Sending left command")
+            sleep(1) # espera alguns instantes antes de verificar o próximo frame
 
         if direcao == "Centro":
-            print("Plataforma Centralizada com sucesso!")
+            print("Platform centralized sucessfully")
             break
+
+# Stop the drone
+drone.mav.send(stop_command)
+print("Stopped movement \n")
+
+# Give some time to change mode
+print("Changing mode in: 3")
+sleep(1)  
+print("Changing mode in: 2")
+sleep(1) 
+print("Changing mode in: 1")
+sleep(1) 
 
 # Land the drone
 drone.mav.send(land_command)
@@ -241,7 +269,7 @@ while True:
         break
 
 # Wait some seconds to ensure landing
-sleep(5)
+sleep(2)
 print("Landed successfully")
 cap.release()
 cv2.destroyAllWindows()
