@@ -30,7 +30,7 @@ def send_ned_velocity(drone, velocity_x, velocity_y, velocity_z, duration):
             0, 0  # yaw, yaw_rate (ignorado devido à máscara)
         )
         # Envie a mensagem ao drone
-        drone.send_mavlink(msg)
+        drone.mav.send(msg)
         sleep(time_interval)
 
 # Exemplo de uso: mover 2 metros para frente

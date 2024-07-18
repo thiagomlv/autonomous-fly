@@ -31,7 +31,7 @@ drone.mav.command_long_send(
     drone.target_component,
     dialect.MAV_CMD_DO_SET_MODE,
     0,
-    1,  # Base mode: GUIDED
+    0,  # Base mode: GUIDED
     4,  # Custom mode
     0, 0, 0, 0, 0
 )
@@ -55,8 +55,8 @@ takeoff_command = dialect.MAVLink_command_long_message(
     target_component=drone.target_component,
     command=dialect.MAV_CMD_NAV_TAKEOFF,
     confirmation=0,
-    param1=1,
-    param2=4,
+    param1=0,
+    param2=0,
     param3=0,
     param4=0,
     param5=0,
@@ -70,8 +70,8 @@ land_command = dialect.MAVLink_command_long_message(
     target_component=drone.target_component,
     command=dialect.MAV_CMD_NAV_LAND,
     confirmation=0,
-    param1=1,
-    param2=4,
+    param1=0,
+    param2=0,
     param3=0,
     param4=0,
     param5=0,
