@@ -127,6 +127,7 @@ while True:
     
     # Mostrar o frame original e o resultado
     cv2.imshow('Webcam', imagem)
+    cv2.waitKey(1)
 
     if circulo is not False:
         break
