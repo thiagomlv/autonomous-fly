@@ -1,3 +1,6 @@
+import pymavlink.mavutil as utility
+import pymavlink.dialects.v20.all as dialect
+
 # Função para receber e processar dados da IMU
 def imu_orientacao():
     while True:
