@@ -31,7 +31,7 @@ drone.mav.command_long_send(
     drone.target_component,
     dialect.MAV_CMD_DO_SET_MODE,
     0,
-    0,  # Base mode: GUIDED
+    1,  # Base mode: GUIDED
     4,  # Custom mode
     0, 0, 0, 0, 0
 )
