@@ -21,6 +21,9 @@ def identificar_circulos_amarelos(frame):
     centro_imagem_x = largura // 2
     centro_imagem_y = altura // 2
 
+    # Desenha a área aceitavel para o centro do círculo estar e ser considerado centralizado
+    cv2.rectangle(frame, (centro_imagem_x - 20, centro_imagem_y - 20), (centro_imagem_x + 20, centro_imagem_y + 20), (0, 255, 0), -1)
+
     # Converter a imagem para o espaço de cores HSV
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
     
