@@ -100,10 +100,10 @@ while True:
 
     message = drone.recv_match(
         type=dialect.MAVLink_global_position_int_message.msgname, 
-        blocking=False).to_dict()
+        blocking=False)
     
     if message:
-    
+        message = message.to_dict()
         relative_altitude = message["relative_alt"] * 1e-3
         print("Relative Altitude", relative_altitude, "meters")
 
