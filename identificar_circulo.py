@@ -35,7 +35,7 @@ def identificar_circulos_amarelos(frame):
     kernel = np.ones((5, 5), np.uint8)
     mascara = cv2.morphologyEx(mascara, cv2.MORPH_CLOSE, kernel)
     mascara = cv2.morphologyEx(mascara, cv2.MORPH_OPEN, kernel)
-    cv2.imshow('Mascara', mascara)
+    #cv2.imshow('Mascara', mascara)
     
     # Detectar círculos usando a Transformada de Hough
     circulos = cv2.HoughCircles(mascara, cv2.HOUGH_GRADIENT, dp=1.2, minDist=50,
