@@ -3,10 +3,10 @@ import pymavlink.mavutil as utility
 import pymavlink.dialects.v20.all as dialect
 import cv2
 import numpy as np
-from identificar_circulo import identificar_circulos_amarelos
+from identify_circle import identificar_circulos_amarelos
 from send_ned_velocity import send_ned_velocity
 
-# Constants
+# Constantes
 TAKEOFF_ALTITUDE = 2
 SPEED = 0.5  # Speed in m/s (adjust as needed)
 SPEED_FIND_CENTER = 0.1 

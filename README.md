@@ -1,19 +1,39 @@
-# autonomous-fly
+# Harpia's first autonomous fly
 
-configurar o ambiente
+Here is described how to perform the first autonomous fly.
 
-https://github.com/mustafa-gokce/ardupilot-software-development/blob/main/environment-setup/quickstart-windows.md
+# Setting the environment
 
-Abra a pasta \ardu-sim\ em um terminal cmd e rode:
-$ arducopter -w -S --model + --speedup 1 --defaults parameters/copter.parm -I0
+1. Run the code bellow. This will install all the required Linux system packages and python modules nedeed.
 
-Abra a pasta \ardu-sim\ em outro terminal rode:
-$ mavproxy --master tcp:127.0.0.1:5760 --out 127.0.0.1:14550 --out 127.0.0.1:14560
+```shell
+curl -s -L https://raw.githubusercontent.com/thiagomlv/autonomous-fly/main/environment-setup/environment_setup.sh | /usr/bin/bash
+```
 
-para abrir o mapa 
-> module load map
+2. To confirm your environment is done, verify if the directory _home/ardu-sim/_ exits and contains the files _arducopter_, _ardu-sim.sh_ and the directory _parameters_.  
 
+3. If the directory wasn't created at the specified path os any files/directory are missing, try to run the code one more time, and check it again.
 
+4. If it is all right,run:
 
+```shell
+cd home/ardu-sim/
+./ardu-sim.sh
+screen -ls
+```
 
-OBS: ip padrão do drone 127.0.0.1:14550
+5. As output, we should see two screens: the _proxy_ and the _vehicle_. This confirms that the environment is done and all the requiremets were installed/created.
+
+# Conecting to the drone (Simulation)
+
+1. Run the code:
+
+```shell
+mavproxy.py --master=127.0.0.1:14550
+```
+
+2. To see the mini-map, run:
+
+```shell
+module load map
+```
