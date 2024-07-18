@@ -1,3 +1,8 @@
+"""
+Decolar -> ir para frente buscando por plataformas -> centraliza a plataforma coma  câmera -> pousa
+velocidade 0,5 e 0,1 metros por segundo
+"""
+
 from time import sleep
 import pymavlink.mavutil as utility
 import pymavlink.dialects.v20.all as dialect
