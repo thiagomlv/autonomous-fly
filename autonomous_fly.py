@@ -75,7 +75,6 @@ def identificar_circulos_amarelos(frame):
 
 # Constants
 TAKEOFF_ALTITUDE = 2
-FORWARD_DISTANCE = 2  # Distance to move forward in meters
 FORWARD_SPEED = 0.5  # Speed in m/s (adjust as needed)
 SLEEP_INTERVAL = 0.1  # Interval to send commands
 
@@ -157,9 +156,6 @@ while True:
         print("Takeoff to", TAKEOFF_ALTITUDE, "meters is successful")
         break
 
-# Move forward 2 meters
-move_duration = FORWARD_DISTANCE / FORWARD_SPEED
-start_time = time.time()
 
 print(f"Moving forward and looking for the platform")
 while True:
