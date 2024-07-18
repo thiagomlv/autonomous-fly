@@ -178,6 +178,7 @@ while True:
 
     # Mostrar o frame original e o resultado
     cv2.imshow('Círculos Amarelos Identificados', imagem)
+    cv2.waitKey(1)
 
     # centraliza o circulo na imagem
     if circulo is not False:
@@ -231,6 +232,7 @@ while True:
 
     # Mostrar o frame original e o resultado
     cv2.imshow('Webcam', imagem)
+    cv2.waitKey(1)
 
     message = drone.recv_match(type=dialect.MAVLink_global_position_int_message.msgname, blocking=True).to_dict()
     relative_altitude = message["relative_alt"] * 1e-3
