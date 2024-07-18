@@ -96,17 +96,20 @@ while True:
 
     # Mostrar o frame original e o resultado
     cv2.imshow('Webcam', imagem)
+    cv2.waitKey(1)
 
     message = drone.recv_match(
         type=dialect.MAVLink_global_position_int_message.msgname, 
-        blocking=True).to_dict()
+        blocking=False).to_dict()
     
-    relative_altitude = message["relative_alt"] * 1e-3
-    print("Relative Altitude", relative_altitude, "meters")
+    if message:
+    
+        relative_altitude = message["relative_alt"] * 1e-3
+        print("Relative Altitude", relative_altitude, "meters")
 
-    if TAKEOFF_ALTITUDE - relative_altitude < 1:
-        print("Takeoff to", TAKEOFF_ALTITUDE, "meters is successful")
-        break
+        if TAKEOFF_ALTITUDE - relative_altitude < 1:
+            print("Takeoff to", TAKEOFF_ALTITUDE, "meters is successful")
+            break
 
 # Moving forward and looking for the platform
 print(f"Moving forward and looking for the platform")
