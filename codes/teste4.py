@@ -34,7 +34,7 @@ def identificar_circulos_amarelos(frame):
     
     # Detectar círculos usando a Transformada de Hough
     circulos = cv2.HoughCircles(mascara, cv2.HOUGH_GRADIENT, dp=1.2, minDist=50,
-                                param1=50, param2=30, minRadius=60, maxRadius=150)
+                                param1=50, param2=30, minRadius=100, maxRadius=150)
     
     # Se algum círculo foi detectado, desenhar apenas o círculo com o maior raio
     if circulos is not None:
