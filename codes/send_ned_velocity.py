@@ -9,7 +9,7 @@ def send_ned_velocity(drone, velocity_x, velocity_y, velocity_z, duration):
     :param velocity_x: Velocidade ao longo do eixo X (Norte) em m/s.
     :param velocity_y: Velocidade ao longo do eixo Y (Leste) em m/s.
     :param velocity_z: Velocidade ao longo do eixo Z (Baixo) em m/s.
-    :param duration: Duração do movimento em segundos.
+    :param duration: Duração do movimento em segundos
     """
     # Defina a taxa de envio de mensagens
     msg_rate = 10  # 10 Hz

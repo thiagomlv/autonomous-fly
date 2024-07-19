@@ -18,10 +18,10 @@ sudo usermod -a -G dialout "$USER"
 cd "$HOME" || exit 1
 
 # create simulation directory
-mkdir -p "$HOME/ardu-sim/"
+mkdir -p "$HOME/harpia-cbr-2024/simulacaoardu-sim/"
 
 # get inside simulation directory
-cd "$HOME/ardu-sim/" || exit 1
+cd "$HOME/harpia-cbr-2024/simulacao/ardu-sim/" || exit 1
 
 # clear directory
 rm -r ./*
@@ -33,16 +33,16 @@ wget https://firmware.ardupilot.org/Copter/stable/SITL_x86_64_linux_gnu/arducopt
 sudo chmod +x arducopter
 
 # create parameters directory
-mkdir -p "$HOME/ardu-sim/parameters/"
+mkdir -p "$HOME/harpia-cbr-2024/simulacao/ardu-sim/parameters/"
 
 # get inside parameters directory
-cd "$HOME/ardu-sim/parameters/" || exit 1
+cd "$HOME/harpia-cbr-2024/simulacao/ardu-sim/parameters/" || exit 1
 
 # get parameter file
 wget https://raw.githubusercontent.com/ArduPilot/ardupilot/master/Tools/autotest/default_params/copter.parm
 
 # get inside simulation directory
-cd "$HOME/ardu-sim/" || exit 1
+cd "$HOME/harpia-cbr-2024/simulacao/ardu-sim/" || exit 1
 
 # create shell script
 echo -e "#!/bin/bash" >> ardu-sim.sh

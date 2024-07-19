@@ -1,5 +1,5 @@
 """
-Teste de movimento sem visão computacional
+Teste de movimento sem visão computacional.
 Decolar -> ir para frente alguns instantes -> pousar
 """
 

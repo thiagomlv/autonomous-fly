@@ -5,7 +5,7 @@ from time import sleep
 # Função para identificar círculos amarelos em um frame
 def identificar_circulos_amarelos(frame):
     """
-    Recebe O frame a ser analisado.
+    Recebe O frame a ser analisado
     Caso encontre um círculo no frame:
          Retorna: o frame com o desenho do circulo, uma tupla com (x, y, raio), a direção de onde está o circulo em relação ao centro da imagem
     Caso não encontre um círculo:

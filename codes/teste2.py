@@ -2,7 +2,7 @@
 Aumentando a velocidade em relação ao primeiro teste
 
 Decolar -> ir para frente buscando por plataformas -> centraliza a plataforma coma  câmera -> pousa
-velocidade 1 e 0,2 metros por segundo
+velocidade 1 e 0,2 metros por segundo.
 """
 
 
