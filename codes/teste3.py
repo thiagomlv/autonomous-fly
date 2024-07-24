@@ -1,5 +1,5 @@
 """
-Somente decolar e pousar
+Somente decolar e pousar.
 """
 
 from time import sleep

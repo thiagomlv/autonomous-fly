@@ -1,5 +1,5 @@
 """
-Testa somente a câmera, sem mover o drone
+Testa somente a câmera, sem mover o drone.
 """
 
 import cv2
