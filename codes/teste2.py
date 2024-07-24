@@ -45,8 +45,8 @@ drone.mav.command_long_send(
     0, 0, 0, 0, 0
 )
 
-# Give some time to change mode
-sleep(2)  
+# # Give some time to change mode
+# sleep(2)  
 
 # Ensure the drone is in GUIDED mode
 print("Setting mottors armed \n")
@@ -118,8 +118,6 @@ while True:
     # Identificar círculos amarelos no frame
     imagem, circulo, direcao = identificar_circulos_amarelos(frame)
 
-    # Mostrar o frame original e o resultado
-    cv2.imshow('Webcam', imagem)
     cv2.waitKey(1)
 
     message = drone.recv_match(
@@ -135,14 +133,14 @@ while True:
             print("Takeoff to", TAKEOFF_ALTITUDE, "meters is successful")
             break
 
-# Give some time to change mode
-print("Desired height achieved successfully")
-print("Changing mode in: 3")
-sleep(1)  
-print("Changing mode in: 2")
-sleep(1) 
-print("Changing mode in: 1")
-sleep(1) 
+# # Give some time to change mode
+# print("Desired height achieved successfully")
+# print("Changing mode in: 3")
+# sleep(1)  
+# print("Changing mode in: 2")
+# sleep(1) 
+# print("Changing mode in: 1")
+# sleep(1) 
 
 # Moving forward and looking for the platform
 print("Moving forward and looking for the platform \n")
@@ -158,8 +156,6 @@ while True:
     # Identificar círculos amarelos no frame
     imagem, circulo, direcao = identificar_circulos_amarelos(frame)
     
-    # Mostrar o frame original e o resultado
-    cv2.imshow('Webcam', imagem)
     cv2.waitKey(1)
 
     if circulo is not False:
@@ -183,13 +179,13 @@ while True:
 drone.mav.send(stop_command)
 print("Stopped forward movement \n")
 
-# Give some time to change mode
-print("Changing mode in: 3")
-sleep(1)  
-print("Changing mode in: 2")
-sleep(1) 
-print("Changing mode in: 1")
-sleep(1) 
+# # Give some time to change mode
+# print("Changing mode in: 3")
+# sleep(1)  
+# print("Changing mode in: 2")
+# sleep(1) 
+# print("Changing mode in: 1")
+# sleep(1) 
 
 # Centralizando o drone na plataforma
 print("Centralizing the platform \n")
@@ -205,8 +201,6 @@ while True:
     # Identificar círculos amarelos no frame
     imagem, circulo, direcao = identificar_circulos_amarelos(frame)
 
-    # Mostrar o frame original e o resultado
-    cv2.imshow('Webcam', imagem)
     cv2.waitKey(1)
 
     # centraliza o circulo na imagem
@@ -243,13 +237,13 @@ while True:
 drone.mav.send(stop_command)
 print("Stopped movement \n")
 
-# Give some time to change mode
-print("Changing mode in: 3")
-sleep(1)  
-print("Changing mode in: 2")
-sleep(1) 
-print("Changing mode in: 1")
-sleep(1) 
+# # Give some time to change mode
+# print("Changing mode in: 3")
+# sleep(1)  
+# print("Changing mode in: 2")
+# sleep(1) 
+# print("Changing mode in: 1")
+# sleep(1) 
 
 # Land the drone
 drone.mav.send(land_command)
@@ -267,8 +261,6 @@ while True:
     # Identificar círculos amarelos no frame
     imagem, circulo, direcao = identificar_circulos_amarelos(frame)
 
-    # Mostrar o frame original e o resultado
-    cv2.imshow('Webcam', imagem)
     cv2.waitKey(1)
 
     message = drone.recv_match(type=dialect.MAVLink_global_position_int_message.msgname, blocking=True).to_dict()

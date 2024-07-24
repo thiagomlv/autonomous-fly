@@ -5,6 +5,7 @@ Testa somente a câmera, sem mover o drone
 import cv2
 import numpy as np
 from time import sleep
+import os
 
 # Função para identificar círculos amarelos em um frame
 def identificar_circulos_amarelos(frame):
@@ -70,6 +71,12 @@ def identificar_circulos_amarelos(frame):
 
 # Capturar vídeo da webcam
 cap = cv2.VideoCapture(0)
+H = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+W = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+
+# path = 'set/output/path/to/the/recording'
+# outputFolder = os.path.join(path, 'recordingHarpia.MP4')
+# out = cv2.VideoWriter(outputFolder, cv2.VideoWriter_fourcc(*'XVID'), int(cap.get(cv2.CAP_PROP_FPS)), (W, H))
 
 while True:
     # Ler um frame da webcam
@@ -80,10 +87,6 @@ while True:
     
     # Identificar círculos amarelos no frame
     imagem, circulo, direcao = identificar_circulos_amarelos(frame)
-    
-
-    # Mostrar o frame original e o resultado
-    cv2.imshow('Webcam', imagem)
     
     # Sair do loop quando a tecla 'q' for pressionada
     if cv2.waitKey(1) & 0xFF == ord('q'):
